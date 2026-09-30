@@ -26,7 +26,7 @@ export default function CreatorCta() {
           {creatorCta.title}
         </h2>
         <p className={styles.body}>{creatorCta.body}</p>
-        <a href="#" className={styles.action}>
+        <a href={creatorCta.actionHref} className={styles.action}>
           {creatorCta.action}
         </a>
       </div>
