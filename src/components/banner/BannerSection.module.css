@@ -19,19 +19,21 @@
 .inner {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 64px);
+  /* Percentage gutters rather than a fixed max-width: the design fills roughly
+     87% of the viewport, so the band should track the window, not stop at a
+     container edge. */
+  padding: clamp(48px, 6vw, 90px) clamp(20px, 6.75%, 130px);
   display: flex;
   flex-direction: column;
-  gap: clamp(40px, 6vw, 80px);
+  gap: clamp(36px, 4vw, 64px);
 }
 
 .block {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* Artwork gets the wider column, matching the design. */
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
   align-items: center;
-  gap: clamp(24px, 4vw, 56px);
+  gap: clamp(24px, 7vw, 110px);
 }
 
 /* Artwork on the left for the second block. */
@@ -44,35 +46,34 @@
 }
 
 .copy {
-  max-width: 480px;
-  /* Pinned to the outer edge so any slack from the column always falls on the
-     artwork side, keeping both outer gutters identical. */
   margin-right: auto;
 }
 
 .reverse .copy {
+  margin-right: 0;
   margin-left: auto;
 }
 
 .title {
-  font-size: clamp(22px, 2.9vw, 38px);
-  line-height: 1.2;
+  font-size: clamp(24px, 3.4vw, 44px);
+  line-height: 1.16;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: #101828;
   text-wrap: balance;
 }
 
 .body {
-  margin-top: 14px;
-  font-size: clamp(13px, 1.05vw, 15px);
+  margin-top: clamp(14px, 1.6vw, 24px);
+  font-size: clamp(14px, 1.15vw, 17px);
   line-height: 1.65;
   color: #667085;
+  max-width: 34em;
 }
 
 .lead {
   color: #101828;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ---------- Stats ---------- */
@@ -80,8 +81,8 @@
 .stats {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(20px, 3vw, 44px);
-  margin-top: 26px;
+  gap: clamp(20px, 3.4vw, 52px);
+  margin-top: clamp(22px, 2.8vw, 40px);
 }
 
 .stat {
@@ -91,7 +92,7 @@
 }
 
 .statValue {
-  font-size: clamp(22px, 2.3vw, 32px);
+  font-size: clamp(22px, 2.6vw, 36px);
   font-weight: 700;
   line-height: 1.1;
   color: #1142e8;
@@ -99,7 +100,7 @@
 }
 
 .statLabel {
-  font-size: clamp(12px, 1vw, 14px);
+  font-size: clamp(13px, 1.05vw, 15px);
   color: #667085;
 }
 
@@ -107,32 +108,30 @@
 
 .points {
   list-style: none;
-  margin-top: 24px;
+  margin-top: clamp(20px, 2.4vw, 34px);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: clamp(12px, 1.4vw, 20px);
 }
 
 .point {
   display: flex;
   align-items: center;
-  gap: 11px;
-  font-size: clamp(13px, 1.05vw, 15px);
+  gap: 12px;
+  font-size: clamp(14px, 1.15vw, 17px);
   font-weight: 500;
   color: #344054;
 }
 
 .check {
-  width: 19px;
-  height: 19px;
+  width: clamp(18px, 1.4vw, 22px);
+  height: clamp(18px, 1.4vw, 22px);
   flex: 0 0 auto;
   color: #1142e8;
 }
 
 /* ---------- Artwork ---------- */
 
-/* Artwork hugs the outer edge of the band rather than floating in the middle
-   of its column, which would leave a gap on the right of the first block. */
 .media {
   display: flex;
   align-items: center;
@@ -147,13 +146,12 @@
   display: block;
   width: 100%;
   height: auto;
-  /* The exports are cutouts with transparent margin baked in, which reads as an
-     extra gap against the gradient. Scaling up anchored to the OUTER edge
-     consumes that margin without shifting the box, so the left and right
-     gutters stay exactly equal. */
-  transform: scale(1.08);
+  /* The exports are cutouts with transparent margin baked in. A small scale
+     anchored to the OUTER edge absorbs it without moving the box, so the left
+     and right gutters stay identical. */
+  transform: scale(1.05);
   transform-origin: right center;
-  filter: drop-shadow(0 18px 40px rgba(16, 24, 40, 0.16));
+  filter: drop-shadow(0 20px 44px rgba(16, 24, 40, 0.18));
 }
 
 .reverse .artwork {
@@ -164,13 +162,13 @@
 
 @media (max-width: 900px) {
   .inner {
-    gap: 36px;
+    gap: 32px;
   }
 
   /* Stack the rows: copy first, artwork second, regardless of side. */
   .block {
     grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
+    gap: 18px;
   }
 
   .reverse .copy,
@@ -180,21 +178,31 @@
 
   .copy,
   .reverse .copy {
-    max-width: 100%;
     margin-left: 0;
+    margin-right: 0;
   }
 
-  .artwork {
-    max-width: min(420px, 86%);
+  .body {
+    max-width: 100%;
   }
 
-  .stats {
-    gap: 22px;
+  /* Scale is dropped once stacked, where there is no outer edge to hug. */
+  .artwork,
+  .reverse .artwork {
+    transform: none;
+    max-width: min(460px, 90%);
+    margin: 0 auto;
+  }
+
+  .media,
+  .reverse .media {
+    justify-content: center;
   }
 }
 
 @media (max-width: 520px) {
-  .artwork {
-    max-width: min(340px, 92%);
+  .artwork,
+  .reverse .artwork {
+    max-width: min(360px, 94%);
   }
 }
