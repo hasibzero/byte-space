@@ -1,6 +1,6 @@
 .logos {
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--surface-subtle);
   padding: clamp(40px, 7vw, 88px) clamp(20px, 5vw, 64px);
 }
 
