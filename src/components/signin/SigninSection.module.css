@@ -4,8 +4,8 @@
      rest, matching the split in the reference. */
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
   /* The reference card runs the full height of the artwork column rather than
-     hugging its own content, so the columns are stretched and the form
-     distributes inside the card. */
+     hugging its own content, so the columns stretch and the form distributes
+     inside the card. */
   align-items: stretch;
   gap: clamp(32px, 4.5vw, 90px);
 }
@@ -91,7 +91,7 @@
 }
 
 /* Tablet and narrow desktop: the card is already cramped next to the promo
-   column, so its padding and the gutter gap shrink before the stack kicks in. */
+   column, so its padding and the gutter gap shrink before the columns stack. */
 @media (max-width: 1200px) {
   .grid {
     gap: clamp(28px, 3vw, 56px);
@@ -102,71 +102,90 @@
   }
 }
 
+/* Tablet: one column, still generous, because the desktop composition is what
+   the stack is preserving here. */
 @media (max-width: 980px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: clamp(28px, 6vw, 44px);
-    /* Single column stacks centred, so the screen reads as one centred column
-       instead of blocks hugging the left edge. */
     justify-items: center;
   }
 
   .copy {
+    max-width: 100%;
     text-align: center;
   }
 
-  .copy,
   .body {
     max-width: 100%;
-  }
-
-  /* Promo copy and artwork stay above the card so the headline still introduces
-     the screen once the columns stack. */
-  .card {
-    max-width: min(520px, 100%);
   }
 
   .artwork {
     margin-left: 0;
     max-width: min(320px, 78%);
   }
+
+  .card {
+    max-width: min(520px, 100%);
+  }
 }
 
-@media (max-width: 620px) {
+/* Phones: a standard mobile layout rather than a squeezed desktop one.
+   Decorative artwork is dropped, the card fills the width, the copy and card
+   text go back to left aligned, and the controls get touch-sized targets. */
+@media (max-width: 720px) {
+  .grid {
+    gap: 28px;
+  }
+
+  .promo {
+    justify-content: flex-start;
+  }
+
+  .copy {
+    text-align: left;
+  }
+
   .title {
-    font-size: 19px;
+    font-size: 21px;
   }
 
   .body {
-    font-size: 14px;
+    font-size: 15px;
+    max-width: 38ch;
+  }
+
+  .media {
+    display: none;
   }
 
   .card {
-    padding: 24px 20px;
-    border-radius: 18px;
-    text-align: center;
+    width: 100%;
+    max-width: 480px;
+    padding: 24px 20px 28px;
+    border-radius: 20px;
+    text-align: left;
+  }
+
+  .eyebrow {
+    font-size: 15px;
   }
 
   .heading {
-    font-size: 27px;
+    font-size: 26px;
   }
 
-  /* Once stacked, the card no longer has an artwork column to match, so it
-     returns to hugging its own content instead of a stretched height. */
+  /* No artwork column to match, so the card hugs its own content and the form
+     stops distributing blocks down a stretched height. */
   .formWrap {
     flex: 0 0 auto;
-  }
-}
-
-@media (max-width: 380px) {
-  .artwork {
-    max-width: 240px;
+    margin-top: 22px;
   }
 }
 
 /* Landscape phones have almost no vertical room, so the decorative composition
-   is dropped and the form gets the whole screen. */
+   stays hidden and the form owns the screen. */
 @media (orientation: landscape) and (max-height: 560px) {
   .media {
     display: none;

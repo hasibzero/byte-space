@@ -49,16 +49,22 @@
   text-decoration: underline;
 }
 
-@media (max-width: 620px) {
+/* Phones: normal top-to-bottom flow with even spacing and a full-width primary
+   action, instead of distributing blocks down a stretched card. */
+@media (max-width: 720px) {
+  .form {
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
   .submit {
     align-self: stretch;
-  }
-}
-
-@media (max-width: 480px) {
-  /* iOS Safari zooms the viewport when a focused control is under 16px, which
-     leaves the page stuck at a magnified scale. */
-  .submit {
+    width: 100%;
+    height: 52px;
     font-size: 16px;
+  }
+
+  .prompt {
+    font-size: 14px;
   }
 }
