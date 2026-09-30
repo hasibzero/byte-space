@@ -1,0 +1,94 @@
+.section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px);
+}
+
+.title {
+  text-align: center;
+  font-size: clamp(20px, 2.3vw, 30px);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #101828;
+  text-wrap: balance;
+}
+
+.subtitle {
+  margin: 12px auto 0;
+  max-width: 720px;
+  text-align: center;
+  font-size: clamp(12px, 0.95vw, 14px);
+  line-height: 1.6;
+  color: #667085;
+  text-wrap: balance;
+}
+
+/* Six across on desktop, three on tablet, two on phones. */
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 18px);
+  max-width: 1080px;
+  margin: clamp(24px, 3vw, 38px) auto 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  padding: clamp(14px, 1.6vw, 20px) 10px;
+  border: 1px solid #e6e6ea;
+  border-radius: 14px;
+  background-color: #ffffff;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: #d4d4d8;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.07);
+  transform: translateY(-2px);
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(38px, 3.6vw, 48px);
+  height: clamp(38px, 3.6vw, 48px);
+  border-radius: 999px;
+  background-color: var(--hero-accent);
+  color: #10240a;
+  flex: 0 0 auto;
+}
+
+.icon {
+  width: 55%;
+  height: 55%;
+}
+
+.label {
+  font-size: clamp(11.5px, 0.9vw, 13.5px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: #344054;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 300px;
+  }
+}
