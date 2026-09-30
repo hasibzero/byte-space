@@ -3,7 +3,10 @@
   /* The card is roughly a third of the page and the promo column takes the
      rest, matching the split in the reference. */
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
-  align-items: center;
+  /* The reference card runs the full height of the artwork column rather than
+     hugging its own content, so the columns are stretched and the form
+     distributes inside the card. */
+  align-items: stretch;
   gap: clamp(32px, 4.5vw, 90px);
 }
 
@@ -51,6 +54,8 @@
 
 .card {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   border-radius: clamp(16px, 1.8vw, 28px);
   padding: clamp(26px, 3.2vw, 56px);
@@ -75,7 +80,23 @@
 }
 
 .formWrap {
+  display: flex;
+  flex-direction: column;
+  /* Fills the stretched card so the form can distribute its blocks. */
+  flex: 1 1 auto;
   margin-top: clamp(24px, 2.6vw, 40px);
+}
+
+/* Tablet and narrow desktop: the card is already cramped next to the promo
+   column, so its padding and the gutter gap shrink before the stack kicks in. */
+@media (max-width: 1200px) {
+  .grid {
+    gap: clamp(28px, 3vw, 56px);
+  }
+
+  .card {
+    padding: clamp(24px, 2.6vw, 40px);
+  }
 }
 
 @media (max-width: 980px) {
@@ -118,6 +139,12 @@
 
   .heading {
     font-size: 27px;
+  }
+
+  /* Once stacked, the card no longer has an artwork column to match, so it
+     returns to hugging its own content instead of a stretched height. */
+  .formWrap {
+    flex: 0 0 auto;
   }
 }
 

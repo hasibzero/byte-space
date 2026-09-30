@@ -1,10 +1,13 @@
+/* The card stretches to the height of the artwork column on desktop, so the
+   blocks are distributed down the card the way the reference lays them out.
+   `gap` is the floor that keeps the form readable once the card is only as
+   tall as its own content, which is the case on phones. */
 .form {
   display: flex;
   flex-direction: column;
-}
-
-.group + .group {
-  margin-top: clamp(18px, 1.7vw, 26px);
+  justify-content: space-between;
+  gap: clamp(16px, 2.4vw, 32px);
+  flex: 1 1 auto;
 }
 
 .label {
@@ -43,7 +46,6 @@
 .submit {
   align-self: flex-end;
   height: clamp(48px, 3.4vw, 60px);
-  margin-top: clamp(24px, 2.2vw, 34px);
   padding: 0 clamp(26px, 2.4vw, 40px);
   border: 0;
   border-radius: 999px;
@@ -67,7 +69,6 @@
   display: flex;
   align-items: center;
   gap: clamp(12px, 1.2vw, 20px);
-  margin-top: clamp(40px, 3.6vw, 58px);
 }
 
 .rule {
@@ -83,7 +84,7 @@
 
 .providers {
   list-style: none;
-  margin: clamp(22px, 2.2vw, 32px) 0 0;
+  margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
@@ -116,7 +117,7 @@
 }
 
 .prompt {
-  margin: clamp(34px, 3.2vw, 52px) 0 0;
+  margin: 0;
   text-align: center;
   font-size: clamp(13px, 1.05vw, 17px);
   color: #667085;
