@@ -1,22 +1,10 @@
-/* Page-level surface: the blue hero background and its grid, plus the inner
-   column that holds the header, copy and artwork. */
+/* Page shell. The blue grid is the hero's own surface, so it is scoped to the
+   hero rather than the whole page — the logo strip below sits on white. */
 
 .page {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  background-color: var(--hero-bg);
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      var(--hero-grid-line) 0 1px,
-      transparent 1px var(--hero-grid-size)
-    ),
-    repeating-linear-gradient(
-      0deg,
-      var(--hero-grid-line) 0 1px,
-      transparent 1px var(--hero-grid-size)
-    );
-  color: var(--hero-on-bg);
 }

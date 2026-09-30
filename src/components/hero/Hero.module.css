@@ -5,6 +5,19 @@
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: clip;
+  background-color: var(--hero-bg);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px var(--hero-grid-size)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px var(--hero-grid-size)
+    );
+  color: var(--hero-on-bg);
 }
 
 /* ---------- Copy ---------- */
