@@ -1,0 +1,132 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.group + .group {
+  margin-top: clamp(18px, 1.7vw, 26px);
+}
+
+.label {
+  display: block;
+  margin-bottom: clamp(8px, 0.7vw, 11px);
+  font-size: clamp(13px, 0.95vw, 15px);
+  font-weight: 500;
+  color: var(--hero-bg);
+}
+
+.input {
+  width: 100%;
+  height: clamp(58px, 4.1vw, 72px);
+  padding: 0 clamp(18px, 1.5vw, 26px);
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #101828;
+  /* `font: inherit` so the control uses Poppins rather than the browser default. */
+  font: inherit;
+  font-size: clamp(14px, 1.1vw, 18px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::placeholder {
+  color: #98a2b3;
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--hero-accent);
+  box-shadow: 0 0 0 3px rgba(203, 249, 38, 0.45);
+}
+
+.submit {
+  align-self: flex-end;
+  height: clamp(48px, 3.4vw, 60px);
+  margin-top: clamp(24px, 2.2vw, 34px);
+  padding: 0 clamp(26px, 2.4vw, 40px);
+  border: 0;
+  border-radius: 999px;
+  background-color: var(--hero-accent);
+  color: #10240a;
+  font-size: clamp(15px, 1.25vw, 20px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.submit:hover {
+  filter: brightness(0.93);
+}
+
+.submit:active {
+  transform: scale(0.99);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.2vw, 20px);
+  margin-top: clamp(40px, 3.6vw, 58px);
+}
+
+.rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background-color: #e4e7ec;
+}
+
+.dividerText {
+  font-size: clamp(13px, 1vw, 16px);
+  color: #98a2b3;
+}
+
+.providers {
+  list-style: none;
+  margin: clamp(22px, 2.2vw, 32px) 0 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 1.6vw, 24px);
+}
+
+.provider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(60px, 5.6vw, 80px);
+  height: clamp(60px, 5.6vw, 80px);
+  border: 1px solid #e4e7ec;
+  border-radius: clamp(14px, 1.3vw, 22px);
+  background-color: #ffffff;
+  color: #1d2939;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.provider:hover {
+  border-color: #d0d5dd;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
+  transform: translateY(-2px);
+}
+
+.providerIcon {
+  width: 44%;
+  height: 44%;
+}
+
+.prompt {
+  margin: clamp(34px, 3.2vw, 52px) 0 0;
+  text-align: center;
+  font-size: clamp(13px, 1.05vw, 17px);
+  color: #667085;
+}
+
+.signupLink {
+  color: var(--hero-bg);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}
