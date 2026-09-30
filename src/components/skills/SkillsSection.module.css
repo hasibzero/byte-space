@@ -1,7 +1,10 @@
 .section {
   width: 100%;
   background-color: #ffffff;
-  padding: clamp(48px, 6vw, 80px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 96px);
+  /* Bottom padding is deliberately lighter than the top: the categories
+     section follows on the same white surface, and the original 96px here
+     stacked with the categories' own 72px into a 168px empty band. */
+  padding: clamp(40px, 4.4vw, 64px) clamp(20px, 5vw, 64px) clamp(44px, 4.6vw, 68px);
 }
 
 .inner {

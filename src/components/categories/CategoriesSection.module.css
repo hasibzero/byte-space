@@ -1,7 +1,10 @@
 .section {
   width: 100%;
   background-color: #ffffff;
-  padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px);
+  /* Asymmetric on purpose: this section sits between two other sections and
+     only needs breathing room around its own content, not a full 72px band on
+     both sides on top of the neighbouring padding. */
+  padding: clamp(28px, 2.8vw, 44px) clamp(20px, 5vw, 64px) clamp(36px, 4vw, 60px);
 }
 
 .title {
