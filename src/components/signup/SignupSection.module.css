@@ -1,13 +1,16 @@
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
   align-items: center;
-  gap: clamp(32px, 5vw, 100px);
+  gap: clamp(32px, 4.5vw, 90px);
+}
+
+.promo {
+  min-width: 0;
 }
 
 .copy {
-  min-width: 0;
-  max-width: min(660px, 100%);
+  max-width: min(620px, 100%);
 }
 
 .title {
@@ -26,22 +29,32 @@
   max-width: 46ch;
 }
 
-.formWrap {
-  margin-top: clamp(28px, 3.4vw, 52px);
-}
-
 .media {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 0;
+  margin-top: clamp(24px, 3.2vw, 56px);
 }
 
 .artwork {
   display: block;
   width: 100%;
-  max-width: clamp(280px, 34vw, 560px);
+  max-width: clamp(260px, 31vw, 540px);
   height: auto;
+  /* Pulled slightly past the gutter so the composition bleeds toward the form
+     the way it does in the reference. */
+  margin-left: calc(-1 * clamp(6px, 1.4vw, 24px));
+}
+
+.formWrap {
+  min-width: 0;
+}
+
+/* Tablet and narrow desktop: the form column is already tight, so the gutter
+   gap and the field padding shrink before the columns stack. */
+@media (max-width: 1200px) {
+  .grid {
+    gap: clamp(28px, 3vw, 56px);
+  }
 }
 
 @media (max-width: 980px) {
@@ -64,14 +77,13 @@
   }
 
   .formWrap {
-    max-width: 520px;
     width: 100%;
+    max-width: 520px;
   }
 
-  /* Copy and form stay first on the way down; the artwork follows instead of
-     pushing the form below the fold on a phone. */
   .artwork {
-    max-width: min(360px, 82%);
+    margin-left: 0;
+    max-width: min(320px, 78%);
   }
 }
 
@@ -82,10 +94,6 @@
 
   .body {
     font-size: 14.5px;
-  }
-
-  .artwork {
-    max-width: min(300px, 76%);
   }
 }
 
