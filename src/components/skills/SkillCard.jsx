@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { avatarPalette } from "./skillsData";
+import { avatarSets } from "./skillsData";
 import styles from "./SkillCard.module.css";
 
 function StarIcon({ className }) {
@@ -43,8 +43,7 @@ const MAX_FACES = 4;
  * duration, comments) are already baked into the image.
  */
 export default function SkillCard({ course }) {
-  const faces = Math.min(MAX_FACES, course.students);
-  const overflow = course.students - faces;
+  const faces = avatarSets[course.avatarSet % avatarSets.length];
 
   return (
     <article className={styles.card}>
@@ -82,20 +81,21 @@ export default function SkillCard({ course }) {
 
           <div className={styles.students}>
             <ul className={styles.faces}>
-              {Array.from({ length: faces }, (_, i) => (
-                <li
-                  key={i}
-                  className={styles.face}
-                  style={{ backgroundColor: avatarPalette[i % avatarPalette.length] }}
-                  aria-hidden="true"
-                />
+              {faces.map((src, i) => (
+                <li key={src} className={styles.face}>
+                  <Image
+                    className={styles.faceImage}
+                    src={src}
+                    alt=""
+                    width={26}
+                    height={26}
+                  />
+                </li>
               ))}
             </ul>
-            {overflow > 0 && (
-              <span className={styles.overflow}>{overflow}+</span>
-            )}
+            <span className={styles.overflow}>{course.students}+</span>
             <span className={styles.srOnly}>
-              {course.students} students enrolled
+              {course.students}+ students enrolled
             </span>
           </div>
         </div>

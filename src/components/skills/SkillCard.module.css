@@ -132,14 +132,23 @@
 .face {
   width: 26px;
   height: 26px;
+  flex: 0 0 auto;
   border-radius: 999px;
   border: 2px solid #ffffff;
   /* Overlap the stack so the group reads as one cluster. */
   margin-left: -8px;
+  overflow: hidden;
 }
 
 .face:first-child {
   margin-left: 0;
+}
+
+.faceImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .overflow {

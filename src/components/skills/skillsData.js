@@ -48,6 +48,7 @@ export const courses = [
     students: 26,
     price: 25,
     access: "/lifetime",
+    avatarSet: 0,
     category: "uxui",
   },
   {
@@ -61,6 +62,7 @@ export const courses = [
     students: 26,
     price: 25,
     access: "/lifetime",
+    avatarSet: 1,
     category: "illustration",
   },
   {
@@ -74,6 +76,7 @@ export const courses = [
     students: 26,
     price: 25,
     access: "/lifetime",
+    avatarSet: 2,
     category: "data",
   },
   {
@@ -87,6 +90,7 @@ export const courses = [
     students: 26,
     price: 25,
     access: "/lifetime",
+    avatarSet: 3,
     category: "productivity",
   },
   {
@@ -100,6 +104,7 @@ export const courses = [
     students: 26,
     price: 25,
     access: "/lifetime",
+    avatarSet: 4,
     category: "data",
   },
   {
@@ -113,9 +118,26 @@ export const courses = [
     students: 26,
     price: 25,
     access: "/lifetime",
+    avatarSet: 5,
     category: "marketing",
   },
 ];
 
-/** Face colours cycled through for the avatar stack. */
-export const avatarPalette = ["#f4a9b8", "#f7c948", "#8fd3f4", "#b9a7f0"];
+/**
+ * Portrait photos used by the card avatar stacks.
+ *
+ * These are real people photos served by randomuser.me, so the site depends on
+ * that host at runtime. If you would rather avoid the external request, drop
+ * four small headshots into the project and point `faces` at local paths.
+ */
+const PORTRAITS = "https://randomuser.me/api/portraits";
+
+/** Rotated across courses so neighbouring cards do not show the same people. */
+export const avatarSets = [
+  [`${PORTRAITS}/men/32.jpg`, `${PORTRAITS}/women/44.jpg`, `${PORTRAITS}/women/68.jpg`, `${PORTRAITS}/men/75.jpg`],
+  [`${PORTRAITS}/women/21.jpg`, `${PORTRAITS}/men/52.jpg`, `${PORTRAITS}/women/65.jpg`, `${PORTRAITS}/men/11.jpg`],
+  [`${PORTRAITS}/men/45.jpg`, `${PORTRAITS}/women/33.jpg`, `${PORTRAITS}/men/84.jpg`, `${PORTRAITS}/women/12.jpg`],
+  [`${PORTRAITS}/women/57.jpg`, `${PORTRAITS}/men/62.jpg`, `${PORTRAITS}/women/29.jpg`, `${PORTRAITS}/men/19.jpg`],
+  [`${PORTRAITS}/men/73.jpg`, `${PORTRAITS}/women/50.jpg`, `${PORTRAITS}/men/28.jpg`, `${PORTRAITS}/women/90.jpg`],
+  [`${PORTRAITS}/women/41.jpg`, `${PORTRAITS}/men/56.jpg`, `${PORTRAITS}/women/17.jpg`, `${PORTRAITS}/men/91.jpg`],
+];
