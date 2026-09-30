@@ -4,6 +4,8 @@ import SkillsSection from "@/components/skills/SkillsSection";
 import CategoriesSection from "@/components/categories/CategoriesSection";
 import BannerSection from "@/components/banner/BannerSection";
 import CreatorCta from "@/components/cta/CreatorCta";
+import TestimonialsSection from "@/components/testimonials/TestimonialsSection";
+import Footer from "@/components/footer/Footer";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -15,6 +17,8 @@ export default function Home() {
       <CategoriesSection />
       <BannerSection />
       <CreatorCta />
+      <TestimonialsSection />
+      <Footer />
     </div>
   );
 }
