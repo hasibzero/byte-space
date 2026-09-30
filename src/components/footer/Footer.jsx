@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import NewsletterForm from "./NewsletterForm";
 import { footerBrand, footerColumns, footerLegal, newsletter } from "./footerData";
 import styles from "./Footer.module.css";
@@ -13,7 +14,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.signup}>
-            <a href="/" aria-label="ByteSpace home" className={styles.brand}>
+            <Link href="/" aria-label="ByteSpace home" className={styles.brand}>
               <Image
                 className={styles.logo}
                 src={footerBrand.logo}
@@ -21,7 +22,7 @@ export default function Footer() {
                 width={footerBrand.logoWidth}
                 height={footerBrand.logoHeight}
               />
-            </a>
+            </Link>
 
             <p className={styles.tagline}>{newsletter.body}</p>
 

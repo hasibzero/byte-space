@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import SignupForm from "./SignupForm";
 import { signupArtwork, signupCopy } from "./signupData";
 import styles from "./SignupSection.module.css";
@@ -12,9 +13,9 @@ import styles from "./SignupSection.module.css";
 export default function SignupSection() {
   return (
     <main className={styles.section}>
-      <a href="/" aria-label="ByteSpace home" className={styles.mark}>
+      <Link href="/" aria-label="ByteSpace home" className={styles.mark}>
         b
-      </a>
+      </Link>
 
       <div className={styles.inner}>
         <div className={styles.copy}>
