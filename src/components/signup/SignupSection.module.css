@@ -21,26 +21,19 @@
   color: var(--hero-on-bg);
 }
 
-/* The design shows the brand glyph alone in the corner. No standalone glyph
-   export was supplied, so it is set as the mark rather than re-using the full
-   wordmark at an unreadable size. */
+/* The corner mark is the supplied glyph export, so the link only sizes it. */
 .mark {
   position: absolute;
   top: clamp(22px, 2.6vw, 40px);
   left: clamp(20px, 2.6vw, 40px);
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(34px, 3vw, 44px);
-  height: clamp(34px, 3vw, 44px);
-  border-radius: 50%;
-  background-color: var(--hero-accent);
-  color: #10240a;
-  font-size: clamp(18px, 1.6vw, 24px);
-  font-weight: 800;
-  line-height: 1;
-  text-transform: lowercase;
+  display: block;
+  line-height: 0;
+}
+
+.mark img {
+  width: auto;
+  height: clamp(28px, 2.4vw, 34px);
 }
 
 .inner {

@@ -27,6 +27,14 @@ export const signupArtwork = {
   height: 586,
 };
 
+/** The design shows the brand glyph alone in the corner, not the wordmark. */
+export const signupLogo = {
+  src: "/assests/jus-logo.png",
+  alt: "ByteSpace",
+  width: 29,
+  height: 32,
+};
+
 export const signupFields = {
   fullName: {
     label: "Full name",
