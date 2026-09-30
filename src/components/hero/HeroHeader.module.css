@@ -1,0 +1,88 @@
+.header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: clamp(16px, 3vh, 32px) clamp(20px, 5.5vw, 88px) 0;
+  flex: 0 0 auto;
+}
+
+.brand {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.logo {
+  width: clamp(105px, 10vw, 130px);
+  min-width: 88px;
+  height: auto;
+  display: block;
+}
+
+.nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 32px);
+}
+
+.navLink,
+.actionLink {
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-weight: 500;
+  color: var(--hero-on-bg);
+  opacity: 0.92;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.navLink:hover,
+.actionLink:hover {
+  opacity: 0.7;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 24px);
+  flex: 0 0 auto;
+}
+
+.cart {
+  width: clamp(18px, 1.4vw, 21px);
+  height: auto;
+  display: block;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 900px) {
+  .nav {
+    display: none;
+  }
+
+  .header {
+    padding-left: clamp(14px, 4vw, 32px);
+    padding-right: clamp(14px, 4vw, 32px);
+  }
+}
+
+@media (max-width: 360px) {
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .actionLink {
+    display: none;
+  }
+}
+
+@media (max-height: 520px) {
+  .header {
+    padding-top: clamp(6px, 1.5vh, 10px);
+  }
+}
