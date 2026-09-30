@@ -6,14 +6,16 @@
  */
 
 const LOGO = {
-  file: "Header_Logo.png",
+  // The header logo is white, so the footer uses the black variant instead.
+  // Both exports share the same 171x37 canvas.
+  file: "blacklogo.png",
   width: 171,
   height: 37,
   alt: "ByteSpace",
 };
 
 export const footerBrand = {
-  logo: `/assests/hero assests/${LOGO.file}`,
+  logo: `/assests/${LOGO.file}`,
   logoWidth: LOGO.width,
   logoHeight: LOGO.height,
   logoAlt: LOGO.alt,
