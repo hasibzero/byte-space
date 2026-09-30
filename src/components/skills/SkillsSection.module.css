@@ -19,14 +19,6 @@
   text-wrap: balance;
 }
 
-/* Blue rule under the emphasised words, matching the design. */
-.accent {
-  text-decoration: underline;
-  text-decoration-color: #1142e8;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 8px;
-}
-
 .subtitle {
   margin: 18px auto 0;
   max-width: 720px;

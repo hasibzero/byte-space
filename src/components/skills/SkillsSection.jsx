@@ -25,9 +25,9 @@ export default function SkillsSection() {
     <section className={styles.section} id="courses">
       <div className={styles.inner}>
         <h2 className={styles.title}>
-          Discover Your <span className={styles.accent}>Passion,</span>
-          <br className={styles.titleBreak} /> Build Your{" "}
-          <span className={styles.accent}>Skills</span>
+          Discover Your Passion,
+          <br className={styles.titleBreak} />
+          Build Your Skills
         </h2>
         <p className={styles.subtitle}>
           At Bytespace Courses, we bring you closer to life-changing knowledge.
