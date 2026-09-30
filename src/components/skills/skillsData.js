@@ -12,16 +12,17 @@ export const skillFilters = [
   { id: "marketing", label: "Marketing" },
   { id: "animation", label: "Animation" },
   { id: "social", label: "Social Media" },
-  { id: "uxui", label: "UX/UI Design" },
+  { id: "uxui", label: "UI/UX Design" },
   { id: "creative", label: "Creative Marketing" },
   { id: "illustration", label: "Digital Illustration" },
   { id: "film", label: "Film & Video" },
-  { id: "code", label: "Code" },
-  { id: "data", label: "Data Science & Entrepreneurship" },
+  { id: "crafts", label: "Crafts" },
+  { id: "freelance", label: "Freelance & Entrepreneurship" },
   { id: "graphic", label: "Graphic Design" },
   { id: "photography", label: "Photography" },
   { id: "productivity", label: "Productivity" },
   { id: "web", label: "Web Development" },
+  { id: "data", label: "Data Science" },
   { id: "cooking", label: "Cooking" },
 ];
 
@@ -29,32 +30,37 @@ const A = "/assests/Skills card assests";
 
 /**
  * The supplied card artwork already contains the photo plus its overlay pills
- * (lessons / duration / comments), so only the title, rating, instructor and
- * price are rendered in markup.
+ * (lessons / duration / comments), so the card renders only the metadata row
+ * below it in markup.
+ *
+ * `students` drives the avatar stack: the first four are shown as faces and
+ * the remainder is summarised by the count bubble.
  */
 export const courses = [
   {
     id: "figma",
-    title: "Learn Figma from Basics",
+    title: "Learn Figma from Basic",
     image: `${A}/Frame.png`,
     alt: "Designer sketching wireframe layouts for a mobile app",
     rating: 4.5,
-    instructor: "Ava Rodriguez",
+    studio: "purepearl studio",
+    level: "Beginner",
+    students: 26,
     price: 25,
-    was: 35,
-    discount: "30% off",
+    access: "/lifetime",
     category: "uxui",
   },
   {
     id: "digital-assets",
-    title: "Build Digital Assets",
+    title: "Build Digital Asset",
     image: `${A}/Frame (1).png`,
     alt: "Grid of illustrated interface icons",
     rating: 4.5,
-    instructor: "Marcus Chen",
+    studio: "purepearl studio",
+    level: "Beginner",
+    students: 26,
     price: 25,
-    was: 35,
-    discount: "30% off",
+    access: "/lifetime",
     category: "illustration",
   },
   {
@@ -63,22 +69,24 @@ export const courses = [
     image: `${A}/Frame (2).png`,
     alt: "Analytics dashboard with charts and graphs",
     rating: 4.5,
-    instructor: "Priya Nair",
+    studio: "purepearl studio",
+    level: "Beginner",
+    students: 26,
     price: 25,
-    was: 35,
-    discount: "30% off",
+    access: "/lifetime",
     category: "data",
   },
   {
     id: "productivity",
-    title: "Balancing Productivity with Focus",
+    title: "Balancing Productivity and Focus",
     image: `${A}/Frame (3).png`,
     alt: "Minimal desk setup with a monitor showing the words do more",
     rating: 4.5,
-    instructor: "Daniel Okafor",
+    studio: "purepearl studio",
+    level: "Beginner",
+    students: 26,
     price: 25,
-    was: 35,
-    discount: "30% off",
+    access: "/lifetime",
     category: "productivity",
   },
   {
@@ -87,10 +95,11 @@ export const courses = [
     image: `${A}/Frame (4).png`,
     alt: "Rising line graph on a laptop screen",
     rating: 4.5,
-    instructor: "Sofia Marino",
+    studio: "purepearl studio",
+    level: "Beginner",
+    students: 26,
     price: 25,
-    was: 35,
-    discount: "30% off",
+    access: "/lifetime",
     category: "data",
   },
   {
@@ -99,10 +108,14 @@ export const courses = [
     image: `${A}/Frame (5).png`,
     alt: "Team planning at a whiteboard covered in sticky notes",
     rating: 4.5,
-    instructor: "Lena Fischer",
+    studio: "purepearl studio",
+    level: "Beginner",
+    students: 26,
     price: 25,
-    was: 35,
-    discount: "30% off",
+    access: "/lifetime",
     category: "marketing",
   },
 ];
+
+/** Face colours cycled through for the avatar stack. */
+export const avatarPalette = ["#f4a9b8", "#f7c948", "#8fd3f4", "#b9a7f0"];

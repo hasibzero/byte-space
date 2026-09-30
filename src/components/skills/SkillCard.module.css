@@ -3,14 +3,14 @@
   flex-direction: column;
   background-color: #ffffff;
   border: 1px solid #ececf0;
-  border-radius: 14px;
-  overflow: hidden;
+  border-radius: 18px;
+  padding: 12px;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .card:hover {
-  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+  box-shadow: 0 10px 28px rgba(16, 24, 40, 0.09);
   transform: translateY(-2px);
 }
 
@@ -18,6 +18,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 341 / 196;
+  border-radius: 12px;
   overflow: hidden;
   background-color: #eeeeee;
 }
@@ -32,12 +33,10 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 14px 16px 16px;
+  gap: 8px;
+  padding: 14px 4px 4px;
 }
 
-/* Title and rating share a baseline row; the title is allowed to clip to two
-   lines so cards in a row stay the same height. */
 .heading {
   display: flex;
   align-items: flex-start;
@@ -46,9 +45,10 @@
 }
 
 .title {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: clamp(15px, 1.25vw, 18px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   color: #101828;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -59,85 +59,134 @@
 .rating {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   flex: 0 0 auto;
-  padding-top: 1px;
-}
-
-.star {
-  width: 14px;
-  height: 14px;
-  color: #f5a524;
+  padding-top: 2px;
 }
 
 .ratingValue {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  color: #475467;
+  color: #667085;
 }
 
-.instructor {
+.star {
+  width: 15px;
+  height: 15px;
+  color: #d0d5dd;
+}
+
+.byline {
+  font-size: 13px;
+  color: #667085;
+}
+
+.studio {
+  color: #1142e8;
+  font-weight: 500;
+}
+
+.studio:hover {
+  text-decoration: underline;
+}
+
+.meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.level {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background-color: #f2f4f7;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.levelIcon {
+  width: 13px;
+  height: 13px;
+  color: #344054;
+}
+
+.students {
+  display: flex;
+  align-items: center;
   min-width: 0;
 }
 
-/* Initials avatar: no image asset required for the instructor portraits. */
-.avatar {
+.faces {
+  list-style: none;
   display: flex;
+  padding: 0;
+}
+
+.face {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 2px solid #ffffff;
+  /* Overlap the stack so the group reads as one cluster. */
+  margin-left: -8px;
+}
+
+.face:first-child {
+  margin-left: 0;
+}
+
+.overflow {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
+  min-width: 26px;
+  height: 26px;
+  margin-left: -8px;
+  padding: 0 6px;
   border-radius: 999px;
-  background-color: #1142e8;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.instructorName {
-  font-size: 13px;
-  color: #475467;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.pro {
-  flex: 0 0 auto;
-  padding: 1px 6px;
-  border-radius: 999px;
-  background-color: #cbf926;
+  border: 2px solid #ffffff;
+  background-color: var(--hero-accent);
   color: #10240a;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 .priceRow {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 2px;
+  margin-top: 6px;
 }
 
 .price {
-  font-size: 15px;
-  font-weight: 700;
-  color: #101828;
+  font-size: 19px;
+  font-weight: 800;
+  color: #1142e8;
+  letter-spacing: -0.01em;
 }
 
-.was {
+.access {
   font-size: 13px;
   color: #98a2b3;
-  text-decoration: line-through;
-}
-
-.discount {
-  font-size: 12px;
-  font-weight: 600;
-  color: #1142e8;
 }

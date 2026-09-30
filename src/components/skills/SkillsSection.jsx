@@ -25,12 +25,12 @@ export default function SkillsSection() {
     <section className={styles.section} id="courses">
       <div className={styles.inner}>
         <h2 className={styles.title}>
-          Discover Your Passion,
-          <br className={styles.titleBreak} />
-          Build Your Skills
+          Discover Your <span className={styles.accent}>Passion,</span>
+          <br className={styles.titleBreak} /> Build Your{" "}
+          <span className={styles.accent}>Skills</span>
         </h2>
         <p className={styles.subtitle}>
-          At ByteSpace Courses, we bring you closer to the changing trends.
+          At Bytespace Courses, we bring you closer to life-changing knowledge.
           Explore a variety of courses across different fields, from technology
           to the arts, and make a difference in your career and life.
         </p>

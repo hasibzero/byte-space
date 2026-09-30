@@ -8,19 +8,19 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px 12px;
-  max-width: 1000px;
-  margin: 0 auto;
+  gap: 12px 14px;
+  max-width: 1120px;
+  margin: clamp(24px, 3vw, 36px) auto 0;
 }
 
 .chip {
   display: inline-block;
-  padding: 7px 15px;
+  padding: 11px 22px;
   border-radius: 999px;
-  border: 1px solid #e4e4e7;
+  border: 1px solid #ececf0;
   background-color: #ffffff;
-  color: #3f3f46;
-  font-size: 13px;
+  color: #344054;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
   cursor: pointer;
@@ -49,9 +49,9 @@
 
 .more {
   display: inline-block;
-  padding: 7px 4px;
+  padding: 11px 6px;
   color: #1142e8;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -66,7 +66,12 @@
   }
 
   .chip {
-    padding: 6px 12px;
-    font-size: 12px;
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+
+  .more {
+    padding: 8px 4px;
+    font-size: 13px;
   }
 }
