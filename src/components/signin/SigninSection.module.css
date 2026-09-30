@@ -131,38 +131,23 @@
   }
 }
 
-/* Phones: a standard mobile layout rather than a squeezed desktop one.
-   Decorative artwork is dropped, the card fills the width, the copy and card
-   text go back to left aligned, and the controls get touch-sized targets. */
+/* Phones: the screen is the form and nothing else. The promo column and the
+   decorative artwork are dropped so the account task is the whole first
+   screenful, instead of a squeezed copy block above it. */
 @media (max-width: 720px) {
   .grid {
-    gap: 28px;
+    gap: 0;
   }
 
   .promo {
-    justify-content: flex-start;
-  }
-
-  .copy {
-    text-align: left;
-  }
-
-  .title {
-    font-size: 21px;
-  }
-
-  .body {
-    font-size: 15px;
-    max-width: 38ch;
-  }
-
-  .media {
     display: none;
   }
 
   .card {
     width: 100%;
     max-width: 480px;
+    /* Centred in the shell column rather than pinned to the leading edge. */
+    margin-inline: auto;
     padding: 24px 20px 28px;
     border-radius: 20px;
     text-align: left;

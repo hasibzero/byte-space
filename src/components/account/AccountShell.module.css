@@ -52,8 +52,10 @@
   }
 
   .inner {
+    /* Only the form card renders at this width, so the shell only needs to
+       clear the corner mark. */
     padding-top: 76px;
-    padding-bottom: 40px;
+    padding-bottom: 32px;
   }
 
   .mark {
