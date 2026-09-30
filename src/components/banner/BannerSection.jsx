@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { bannerBackground, bannerBlocks } from "./bannerData";
+import { bannerBlocks } from "./bannerData";
 import styles from "./BannerSection.module.css";
 
 function CheckIcon({ className }) {
@@ -33,14 +33,6 @@ function CheckIcon({ className }) {
 export default function BannerSection() {
   return (
     <section className={styles.section} aria-label="Why ByteSpace">
-      <Image
-        className={styles.background}
-        src={bannerBackground.src}
-        alt=""
-        fill
-        sizes="100vw"
-      />
-
       <div className={styles.inner}>
         {bannerBlocks.map((block) => (
           <div

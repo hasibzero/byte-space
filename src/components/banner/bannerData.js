@@ -48,11 +48,3 @@ export const bannerBlocks = [
     reverse: true,
   },
 ];
-
-/**
- * Full-bleed gradient behind the whole band. Rendered with `fill`, so it
- * needs no intrinsic dimensions.
- */
-export const bannerBackground = {
-  src: `${B}/Frame 15.png`,
-};
