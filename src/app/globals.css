@@ -9,6 +9,9 @@
   --hero-on-bg-muted: rgba(255, 255, 255, 0.88);
   --hero-grid-line: rgba(255, 255, 255, 0.13);
   --hero-grid-size: 85.33px;
+
+  /* Shuttle Gray/50 */
+  --surface-subtle: #f5f5f6;
 }
 
 html {
@@ -31,7 +34,7 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), "Poppins", Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,5 +1,6 @@
 import Hero from "@/components/hero/Hero";
 import Logos from "@/components/logos/Logos";
+import SkillsSection from "@/components/skills/SkillsSection";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div className={styles.page}>
       <Hero />
       <Logos />
+      <SkillsSection />
     </div>
   );
 }

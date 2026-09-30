@@ -1,30 +1,76 @@
 .logos {
   width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
+  background-color: var(--surface-subtle);
   padding: clamp(40px, 7vw, 88px) clamp(20px, 5vw, 64px);
 }
 
-/* The strip is a single 1132x42 raster, so it scales as one unit and cannot
-   wrap. It stays full width on desktop and simply scales down on phones, where
-   the wordmarks become small but the row remains intact. To reflow to two
-   columns on mobile, the five marks would need exporting as separate files. */
+/* Wrapping row: five across on desktop, three on tablet, two on phones. */
+.list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 60px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Height-driven so the marks share one optical baseline regardless of their
+   slightly different intrinsic heights. */
 .image {
   display: block;
-  width: 100%;
-  height: auto;
-  max-width: 1400px;
+  width: auto;
+  height: clamp(26px, 3.2vw, 40px);
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.item:hover .image {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .list {
+    max-width: 620px;
+  }
 }
 
 @media (max-width: 640px) {
   .logos {
     padding: 36px 20px;
   }
+
+  .list {
+    max-width: 340px;
+    gap: 24px 20px;
+  }
+
+  .item {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  .image {
+    height: clamp(24px, 7vw, 30px);
+  }
 }
 
 @media (max-width: 360px) {
   .logos {
     padding: 28px 16px;
+  }
+
+  .list {
+    max-width: 260px;
   }
 }
