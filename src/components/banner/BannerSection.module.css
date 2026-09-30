@@ -1,0 +1,223 @@
+/* The wash is built from CSS radial gradients rather than the supplied raster.
+   The export is near-square (1440x1460), so object-fit:cover has to crop hard
+   to fill extreme aspect ratios: on a 2560px-wide band it discards roughly
+   1400px vertically and the lime/blue corners vanish into a flat tint.
+   Percentages here resolve against the element box, so the composition holds
+   at any width or height instead of being cropped. */
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f5f6f8;
+  background-image:
+    radial-gradient(
+      58% 40% at 6% 3%,
+      rgba(214, 240, 61, 0.92),
+      rgba(214, 240, 61, 0) 62%
+    ),
+    radial-gradient(
+      52% 38% at 0% 92%,
+      rgba(214, 240, 61, 0.78),
+      rgba(214, 240, 61, 0) 62%
+    ),
+    radial-gradient(
+      64% 50% at 97% 88%,
+      rgba(154, 181, 236, 0.85),
+      rgba(154, 181, 236, 0) 66%
+    );
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  /* Percentage gutters rather than a fixed max-width: the design fills roughly
+     87% of the viewport, so the band should track the window, not stop at a
+     container edge. */
+  --gutter: clamp(20px, 6.75%, 130px);
+  /* The artwork exports are cutouts with transparent margin baked in, which
+     leaves the outer edge looking short of the gutter. Bleeding the cutout out
+     by a slice closes that gap without enlarging the art. */
+  --bleed: clamp(10px, 2.4vw, 38px);
+  padding: clamp(48px, 6vw, 90px) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 4vw, 64px);
+}
+
+.block {
+  display: grid;
+  /* Artwork gets the wider column, matching the design. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  align-items: center;
+  gap: clamp(24px, 7vw, 110px);
+}
+
+/* Artwork on the left for the second block. */
+.reverse .copy {
+  order: 2;
+}
+
+.reverse .media {
+  order: 1;
+}
+
+.copy {
+  margin-right: auto;
+}
+
+.reverse .copy {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.title {
+  font-size: clamp(21px, 2.5vw, 33px);
+  line-height: 1.16;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #101828;
+  text-wrap: balance;
+}
+
+.body {
+  margin-top: clamp(14px, 1.6vw, 24px);
+  font-size: clamp(13.5px, 0.95vw, 15px);
+  line-height: 1.65;
+  color: #667085;
+  max-width: 34em;
+}
+
+.lead {
+  color: #101828;
+  font-weight: 700;
+}
+
+/* ---------- Stats ---------- */
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3.4vw, 52px);
+  margin-top: clamp(22px, 2.8vw, 40px);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statValue {
+  font-size: clamp(19px, 2vw, 27px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #1142e8;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-size: clamp(12.5px, 0.9vw, 14px);
+  color: #667085;
+}
+
+/* ---------- Checklist ---------- */
+
+.points {
+  list-style: none;
+  margin-top: clamp(20px, 2.4vw, 34px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(13.5px, 0.95vw, 15px);
+  font-weight: 500;
+  color: #344054;
+}
+
+.check {
+  width: clamp(16px, 1.15vw, 19px);
+  height: clamp(16px, 1.15vw, 19px);
+  flex: 0 0 auto;
+  color: #1142e8;
+}
+
+/* ---------- Artwork ---------- */
+
+.media {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.reverse .media {
+  justify-content: flex-start;
+}
+
+.artwork {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Pull the cutout out to the outer edge so its transparent margin no longer
+     reads as a gap. Negative margin on a flex item bleeds it past the
+     container; the bleed stays inside the gutter, so nothing is clipped. */
+  margin-right: calc(-1 * var(--bleed));
+  filter: drop-shadow(0 20px 44px rgba(16, 24, 40, 0.18));
+}
+
+.reverse .artwork {
+  margin-right: 0;
+  margin-left: calc(-1 * var(--bleed));
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .inner {
+    gap: 32px;
+  }
+
+  /* Stack the rows: copy first, artwork second, regardless of side. */
+  .block {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .reverse .copy,
+  .reverse .media {
+    order: initial;
+  }
+
+  .copy,
+  .reverse .copy {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .body {
+    max-width: 100%;
+  }
+
+  /* Artwork centred once the rows stack, so no outer edge to bleed into. */
+  .artwork,
+  .reverse .artwork {
+    max-width: min(400px, 88%);
+    margin: 0 auto;
+  }
+
+  .media,
+  .reverse .media {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .artwork,
+  .reverse .artwork {
+    max-width: min(360px, 94%);
+  }
+}
