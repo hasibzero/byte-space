@@ -1,0 +1,155 @@
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(56px, 8vw, 110px) clamp(20px, 6vw, 80px);
+  background-color: var(--hero-bg);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px var(--hero-grid-size)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px var(--hero-grid-size)
+    );
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: clamp(24px, 3.6vw, 46px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.body {
+  margin-top: clamp(16px, 2vw, 28px);
+  max-width: 900px;
+  font-size: clamp(13.5px, 1.15vw, 17px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+  text-wrap: balance;
+}
+
+.action {
+  margin-top: clamp(22px, 2.8vw, 40px);
+  display: inline-block;
+  padding: clamp(11px, 1.2vw, 16px) clamp(26px, 2.6vw, 38px);
+  border-radius: 999px;
+  background-color: var(--hero-accent);
+  color: #10240a;
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.action:hover {
+  filter: brightness(0.93);
+}
+
+.action:active {
+  transform: scale(0.98);
+}
+
+.action:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* ---------- Decorations ---------- */
+
+.decor {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  height: auto;
+}
+
+/* Flat shapes are painted in the accent colour through a mask, which recolours
+   them regardless of the fill baked into the source PNG. */
+.masked {
+  background-color: var(--hero-accent);
+  -webkit-mask: var(--shape) center / contain no-repeat;
+  mask: var(--shape) center / contain no-repeat;
+}
+
+/* Positions are edge-anchored with negative offsets so the shapes bleed off
+   the section, matching the design. */
+.topLeft {
+  left: clamp(-70px, -3vw, -10px);
+  top: clamp(-40px, -2vw, 0px);
+  width: clamp(110px, 15vw, 230px);
+  transform: rotate(-6deg);
+}
+
+.topLeftInner {
+  left: clamp(60px, 12vw, 220px);
+  top: clamp(10px, 2vw, 40px);
+  width: clamp(50px, 6vw, 100px);
+  transform: rotate(-8deg);
+}
+
+.topRight {
+  right: clamp(40px, 8vw, 150px);
+  top: clamp(-30px, -1vw, 20px);
+  width: clamp(90px, 12vw, 190px);
+  transform: rotate(8deg);
+}
+
+.leftMid {
+  left: clamp(-40px, -2vw, 0px);
+  top: 34%;
+  width: clamp(80px, 10vw, 170px);
+  transform: rotate(-14deg);
+}
+
+.bottomLeft {
+  left: clamp(-30px, 0vw, 30px);
+  bottom: clamp(-60px, -3vw, -10px);
+  width: clamp(130px, 18vw, 300px);
+  transform: rotate(-15deg);
+}
+
+.bottomRight {
+  right: clamp(-20px, 1vw, 40px);
+  bottom: clamp(-50px, -2vw, 0px);
+  width: clamp(70px, 9vw, 150px);
+  transform: rotate(15deg);
+}
+
+@media (max-width: 700px) {
+  .leftMid,
+  .bottomRight {
+    display: none;
+  }
+
+  .topLeft,
+  .topRight,
+  .bottomLeft {
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 420px) {
+  .topLeftInner {
+    display: none;
+  }
+}
