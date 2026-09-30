@@ -1,0 +1,120 @@
+/* The band artwork is a single composed export (grid + all decorative shapes).
+   Desktop matches the export's own 2.95:1 ratio so the image maps across the
+   section with no crop and no distortion; below the breakpoint the ratio is
+   dropped, the section becomes content-driven, and the cover crop trims the
+   outer shapes, which are decorative and already bleed at the edges. */
+
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--hero-bg);
+  aspect-ratio: 1440 / 488;
+  padding-inline: clamp(20px, 6vw, 80px);
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  /* Capped as a percentage of the band so the copy stays clear of the shapes
+     at the outer edges, and in pixels so it does not grow absurdly wide on
+     very large displays. */
+  max-width: min(880px, 68%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: clamp(22px, 2.85vw, 42px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.body {
+  margin-top: clamp(14px, 1.9vw, 30px);
+  max-width: 100%;
+  font-size: clamp(12.5px, 0.98vw, 15px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  text-wrap: balance;
+}
+
+.action {
+  margin-top: clamp(20px, 2.4vw, 40px);
+  display: inline-block;
+  padding: clamp(10px, 1.05vw, 14px) clamp(24px, 2.1vw, 32px);
+  border-radius: 999px;
+  background-color: var(--hero-accent);
+  color: #10240a;
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.action:hover {
+  filter: brightness(0.93);
+}
+
+.action:active {
+  transform: scale(0.98);
+}
+
+.action:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* Below the breakpoint the section stops matching the export's ratio, because
+   the copy needs far more height than a 2.95:1 band provides. The image
+   switches to covering that taller box, which trims the outermost shapes. */
+@media (max-width: 900px) {
+  .section {
+    aspect-ratio: auto;
+    min-height: clamp(400px, 74vh, 520px);
+    padding-block: clamp(56px, 12vw, 88px);
+  }
+
+  .frame {
+    /* Bias toward the upper area so the top-left scribble and the green cone
+       stay in frame rather than being trimmed away entirely. */
+    object-position: center 30%;
+  }
+
+  .inner {
+    max-width: min(640px, 100%);
+  }
+}
+
+@media (max-width: 560px) {
+  .section {
+    min-height: 0;
+  }
+
+  .frame {
+    object-position: 30% 30%;
+  }
+
+  .inner {
+    max-width: 100%;
+  }
+}
