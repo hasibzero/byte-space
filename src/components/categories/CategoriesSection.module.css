@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  background-color: var(--surface-subtle);
+  background-color: #ffffff;
   padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 64px);
 }
 
