@@ -1,10 +1,12 @@
 import Hero from "@/components/hero/Hero";
+import Logos from "@/components/logos/Logos";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <Hero />
-    </main>
+      <Logos />
+    </div>
   );
 }

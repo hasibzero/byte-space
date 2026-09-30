@@ -1,0 +1,30 @@
+.logos {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: clamp(40px, 7vw, 88px) clamp(20px, 5vw, 64px);
+}
+
+/* The strip is a single 1132x42 raster, so it scales as one unit and cannot
+   wrap. It stays full width on desktop and simply scales down on phones, where
+   the wordmarks become small but the row remains intact. To reflow to two
+   columns on mobile, the five marks would need exporting as separate files. */
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1400px;
+}
+
+@media (max-width: 640px) {
+  .logos {
+    padding: 36px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logos {
+    padding: 28px 16px;
+  }
+}
