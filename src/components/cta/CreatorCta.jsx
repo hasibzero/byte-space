@@ -2,6 +2,20 @@ import Image from "next/image";
 import { ctaDecorations, creatorCta } from "./ctaData";
 import styles from "./CreatorCta.module.css";
 
+/** Intrinsic dimensions of the hero shape exports, keyed by file name. */
+const DIMENSIONS = {
+  "Frame.png": [267, 387],
+  "Cone.png": [190, 189],
+  "Cone (1).png": [213, 372],
+  "Mask Group.png": [176, 176],
+  "Mask Group (1).png": [344, 343],
+};
+
+function dimensionsFor(src) {
+  const file = src.split("/").pop();
+  return DIMENSIONS[file] ?? [200, 200];
+}
+
 /**
  * Creator call-to-action band.
  *
@@ -15,8 +29,11 @@ export default function CreatorCta() {
         shape.kind === "mask" ? (
           <span
             key={shape.id}
-            className={`${styles.decor} ${styles[shape.position]} ${styles.masked}`}
-            style={{ "--shape": `url("${shape.src}")` }}
+            className={`${styles.decor} ${styles[shape.position]}`}
+            style={{
+              "--shape": `url("${shape.src}")`,
+              "--shape-color": shape.color,
+            }}
             aria-hidden="true"
           />
         ) : (
@@ -25,8 +42,8 @@ export default function CreatorCta() {
             className={`${styles.decor} ${styles[shape.position]}`}
             src={shape.src}
             alt=""
-            width={267}
-            height={387}
+            width={dimensionsFor(shape.src)[0]}
+            height={dimensionsFor(shape.src)[1]}
           />
         )
       )}

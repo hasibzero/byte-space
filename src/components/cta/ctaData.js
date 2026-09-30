@@ -1,10 +1,18 @@
 /**
- * Copy for the creator call-to-action band.
+ * Copy and decoration placement for the creator call-to-action band.
  *
- * Decorations reuse the hero shape exports so the two sections share a visual
- * language. `mask` shapes are rendered as CSS masks so they can be recoloured;
- * `image` shapes are placed directly because they carry a gradient that a mask
- * would flatten.
+ * Decorations reuse the hero shape exports so both sections share a visual
+ * language. Two rendering kinds are used:
+ *
+ *   image - placed as-is, because the shape carries a gradient a mask would
+ *           flatten (the lime scribble) or is already the right colour.
+ *   mask  - painted through a CSS mask so the shape can take an arbitrary
+ *           colour. The source exports are flat white, but the design shows
+ *           the ring and the lower squiggle in lime.
+ *
+ * Positions are percentages of the section box so the composition holds its
+ * proportions at any width, and each shape is offset past its edge so it crops
+ * at the boundary the way the design does.
  */
 
 const H = "/assests/hero assests";
@@ -15,13 +23,50 @@ export const creatorCta = {
   action: "Join as Creator",
 };
 
-/** Positioned by edge so the shapes bleed off the section, as in the design. */
 export const ctaDecorations = [
-  { id: "scribble", kind: "image", src: `${H}/Frame.png`, alt: "", position: "topLeft" },
-  { id: "squiggle", kind: "image", src: `${H}/Mask Group.png`, alt: "", position: "topLeftInner" },
-  { id: "greenCone", kind: "image", src: `${H}/Cone (1).png`, alt: "", position: "topRight" },
-  { id: "cone", kind: "image", src: `${H}/Cone.png`, alt: "", position: "leftMid" },
-  /* Flat white ring, recoloured lime via a mask so it matches the design. */
-  { id: "ring", kind: "mask", src: `${H}/Mask Group (1).png`, position: "bottomLeft" },
-  { id: "squiggleRight", kind: "image", src: `${H}/Mask Group.png`, alt: "", position: "bottomRight" },
+  {
+    id: "scribble",
+    kind: "image",
+    src: `${H}/Frame.png`,
+    position: "scribble",
+  },
+  {
+    id: "squiggleTop",
+    kind: "mask",
+    src: `${H}/Mask Group.png`,
+    color: "#ffffff",
+    position: "squiggleTop",
+  },
+  {
+    id: "greenCone",
+    kind: "image",
+    src: `${H}/Cone (1).png`,
+    position: "greenCone",
+  },
+  {
+    id: "coneRight",
+    kind: "image",
+    src: `${H}/Cone.png`,
+    position: "coneRight",
+  },
+  {
+    id: "coneLeft",
+    kind: "image",
+    src: `${H}/Cone.png`,
+    position: "coneLeft",
+  },
+  {
+    id: "ring",
+    kind: "mask",
+    src: `${H}/Mask Group (1).png`,
+    color: "#cbf926",
+    position: "ring",
+  },
+  {
+    id: "squiggleBottom",
+    kind: "mask",
+    src: `${H}/Mask Group.png`,
+    color: "#cbf926",
+    position: "squiggleBottom",
+  },
 ];
