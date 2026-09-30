@@ -104,6 +104,13 @@
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: clamp(28px, 6vw, 44px);
+    /* Single column stacks centred, so the screen reads as one centred column
+       instead of blocks hugging the left edge. */
+    justify-items: center;
+  }
+
+  .copy {
+    text-align: center;
   }
 
   .copy,
@@ -135,6 +142,7 @@
   .card {
     padding: 24px 20px;
     border-radius: 18px;
+    text-align: center;
   }
 
   .heading {
