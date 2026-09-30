@@ -1,7 +1,10 @@
 .logos {
   width: 100%;
   background-color: var(--surface-subtle);
-  padding: clamp(40px, 7vw, 88px) clamp(20px, 5vw, 64px);
+  /* The strip only holds a single row of 40px marks, so the original 88px
+     padding made the band read as an empty grey block. Trimmed to keep it
+     clearly separated from the hero and the white skills section below. */
+  padding: clamp(28px, 3.6vw, 56px) clamp(20px, 5vw, 64px);
 }
 
 /* Wrapping row: five across on desktop, three on tablet, two on phones. */
@@ -48,7 +51,7 @@
 
 @media (max-width: 640px) {
   .logos {
-    padding: 36px 20px;
+    padding: 32px 20px;
   }
 
   .list {

@@ -8,7 +8,7 @@
   --gutter: clamp(20px, 6.75%, 130px);
   max-width: 1400px;
   margin: 0 auto;
-  padding: clamp(44px, 4.4vw, 76px) var(--gutter) clamp(28px, 2.6vw, 44px);
+  padding: clamp(32px, 3.2vw, 56px) var(--gutter) clamp(28px, 2.6vw, 44px);
 }
 
 .top {
@@ -67,7 +67,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: clamp(40px, 5vw, 96px);
+  margin-top: clamp(32px, 3.4vw, 56px);
   padding-top: clamp(20px, 2vw, 34px);
   border-top: 1px solid #e4e7ec;
 }
