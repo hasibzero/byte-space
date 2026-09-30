@@ -1,0 +1,143 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #ececf0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+  transform: translateY(-2px);
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 341 / 196;
+  overflow: hidden;
+  background-color: #eeeeee;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+}
+
+/* Title and rating share a baseline row; the title is allowed to clip to two
+   lines so cards in a row stay the same height. */
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #101828;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  padding-top: 1px;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  color: #f5a524;
+}
+
+.ratingValue {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475467;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Initials avatar: no image asset required for the instructor portraits. */
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background-color: #1142e8;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.instructorName {
+  font-size: 13px;
+  color: #475467;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pro {
+  flex: 0 0 auto;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background-color: #cbf926;
+  color: #10240a;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.was {
+  font-size: 13px;
+  color: #98a2b3;
+  text-decoration: line-through;
+}
+
+.discount {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1142e8;
+}
