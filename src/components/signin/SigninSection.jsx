@@ -1,30 +1,20 @@
 import Image from "next/image";
-import Link from "next/link";
+import AccountShell from "@/components/account/AccountShell";
 import SigninForm from "./SigninForm";
-import { signinArtwork, signinCopy, signinLogo } from "./signinData";
+import { accountArtwork } from "@/components/account/accountData";
+import { signinCopy } from "./signinData";
 import styles from "./SigninSection.module.css";
 
 /**
  * Sign-in screen.
  *
- * Mirrors the create-account route: same blue grid surface and the same
- * supplied artwork export, but the copy and artwork share the left column while
- * the form card sits in a white panel on the right.
+ * Mirrors the create-account route on the shared shell: the copy and artwork
+ * share the left column while the form sits in a white card on the right.
  */
 export default function SigninSection() {
   return (
-    <main className={styles.section}>
-      <Link href="/" aria-label="ByteSpace home" className={styles.mark}>
-        <Image
-          src={signinLogo.src}
-          alt={signinLogo.alt}
-          width={signinLogo.width}
-          height={signinLogo.height}
-          priority
-        />
-      </Link>
-
-      <div className={styles.inner}>
+    <AccountShell>
+      <div className={styles.grid}>
         <div className={styles.promo}>
           <div className={styles.copy}>
             <h1 className={styles.title}>{signinCopy.title}</h1>
@@ -34,10 +24,10 @@ export default function SigninSection() {
           <div className={styles.media}>
             <Image
               className={styles.artwork}
-              src={signinArtwork.src}
-              alt={signinArtwork.alt}
-              width={signinArtwork.width}
-              height={signinArtwork.height}
+              src={accountArtwork.src}
+              alt={accountArtwork.alt}
+              width={accountArtwork.width}
+              height={accountArtwork.height}
               priority
             />
           </div>
@@ -52,6 +42,6 @@ export default function SigninSection() {
           </div>
         </div>
       </div>
-    </main>
+    </AccountShell>
   );
 }

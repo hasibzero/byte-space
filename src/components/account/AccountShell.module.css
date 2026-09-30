@@ -1,0 +1,72 @@
+.section {
+  --gutter: clamp(20px, 4.5vw, 80px);
+  position: relative;
+  width: 100%;
+  /* `100svh` keeps the shell from jumping when mobile browser chrome collapses,
+     while the `100vh` fallback covers older engines. */
+  min-height: 100vh;
+  min-height: 100svh;
+  /* `clip` rather than `hidden`: the grid and artwork may bleed past the edge,
+     but `hidden` would make the section a scroll container on iOS. */
+  overflow-x: clip;
+  background-color: var(--hero-bg);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px clamp(96px, 8.2vw, 160px)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--hero-grid-line) 0 1px,
+      transparent 1px clamp(96px, 8.2vw, 160px)
+    );
+  color: var(--hero-on-bg);
+}
+
+/* The corner mark is the supplied glyph export, so the link only sizes it. */
+.mark {
+  position: absolute;
+  top: clamp(18px, 2.6vw, 40px);
+  left: clamp(20px, 2.6vw, 40px);
+  z-index: 2;
+  display: block;
+  line-height: 0;
+}
+
+.mark img {
+  width: auto;
+  height: clamp(26px, 2.4vw, 34px);
+}
+
+.inner {
+  max-width: 1560px;
+  margin: 0 auto;
+  /* Top padding clears the absolutely positioned mark at every width. */
+  padding: clamp(76px, 8vw, 140px) var(--gutter) clamp(40px, 5vw, 88px);
+}
+
+@media (max-width: 620px) {
+  .section {
+    --gutter: clamp(16px, 5vw, 32px);
+  }
+}
+
+@media (max-width: 380px) {
+  .inner {
+    padding-top: 68px;
+  }
+
+  .mark img {
+    height: 26px;
+  }
+}
+
+/* Landscape phones: the grid cell shrinks so the surface still reads as a grid
+   once the width, not the height, is the constraining dimension. */
+@media (orientation: landscape) and (max-height: 560px) {
+  .inner {
+    padding-top: 72px;
+    padding-bottom: 40px;
+  }
+}

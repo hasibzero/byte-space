@@ -1,32 +1,36 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 1.4vw, 22px);
+  gap: clamp(14px, 1.4vw, 20px);
 }
 
 .row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 1.4vw, 22px);
+  gap: clamp(14px, 1.4vw, 20px);
 }
 
 .field {
   position: relative;
   display: flex;
+  /* Without this a long placeholder can force the grid track wider than the
+     column on narrow screens. */
+  min-width: 0;
 }
 
 .input {
   width: 100%;
-  height: clamp(56px, 4vw, 70px);
-  padding: 0 clamp(20px, 1.6vw, 28px);
+  min-width: 0;
+  height: clamp(54px, 4vw, 70px);
+  padding: 0 clamp(16px, 1.6vw, 28px);
   border: 1px solid transparent;
   border-radius: 8px;
   background-color: #ffffff;
-  color: #101828;
   /* `font: inherit` so the fields use Poppins instead of the browser default
      inside form controls. */
   font: inherit;
-  font-size: clamp(14px, 1.05vw, 17px);
+  font-size: clamp(15px, 1.05vw, 17px);
+  color: #101828;
   color-scheme: light;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
   appearance: none;
@@ -34,6 +38,8 @@
 
 .input::placeholder {
   color: #667085;
+  /* Prevents long placeholder text from overflowing the rounded control. */
+  text-overflow: ellipsis;
 }
 
 .input:focus-visible {
@@ -45,12 +51,12 @@
 /* The native select arrow would sit on top of the custom chevron. */
 select.input {
   cursor: pointer;
-  padding-right: clamp(44px, 3.4vw, 60px);
+  padding-right: clamp(40px, 3.4vw, 60px);
 }
 
 .chevron {
   position: absolute;
-  right: clamp(18px, 1.5vw, 26px);
+  right: clamp(16px, 1.5vw, 26px);
   top: 50%;
   width: 20px;
   height: 20px;
@@ -63,7 +69,7 @@ select.input {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  margin-top: clamp(4px, 0.4vw, 8px);
+  margin-top: clamp(2px, 0.3vw, 6px);
   cursor: pointer;
 }
 
@@ -93,8 +99,8 @@ select.input {
 }
 
 .submit {
-  height: clamp(56px, 4vw, 70px);
-  margin-top: clamp(6px, 0.6vw, 12px);
+  height: clamp(54px, 4vw, 70px);
+  margin-top: clamp(4px, 0.5vw, 10px);
   border: 0;
   border-radius: 8px;
   background-color: var(--hero-accent);
@@ -116,5 +122,15 @@ select.input {
 @media (max-width: 620px) {
   .row {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  /* iOS Safari zooms the viewport when a focused control is under 16px, which
+     leaves the page stuck at a magnified scale. */
+  .input,
+  .submit {
+    font-size: 16px;
+    height: 54px;
   }
 }

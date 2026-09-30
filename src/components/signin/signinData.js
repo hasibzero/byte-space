@@ -2,16 +2,9 @@
  * Content for the sign-in page.
  *
  * Copy, field config and provider list are data rather than markup so the form
- * stays presentational, matching the signup route.
+ * stays presentational, matching the signup route. The shared shell surface,
+ * corner mark and artwork live in `@/components/account`.
  */
-
-/** Same corner mark as the create-account screen. */
-export const signinLogo = {
-  src: "/assests/jus-logo.png",
-  alt: "ByteSpace",
-  width: 29,
-  height: 32,
-};
 
 export const signinCopy = {
   title: "Sign in with ease",
@@ -21,19 +14,6 @@ export const signinCopy = {
   prompt: "New user?",
   signupHref: "/signup",
   signupLabel: "Create an account",
-};
-
-/**
- * The artwork is the same supplied export used by the create-account screen: it
- * is a single 552x586 PNG with transparent corners carrying both course cards,
- * the Happy Students card and the decorative shapes in their designed
- * positions.
- */
-export const signinArtwork = {
-  src: "/assests/Accoun create/Group 7.png",
-  alt: "Course cards for Big Data and Build Digital Asset with a Happy Students panel",
-  width: 552,
-  height: 586,
 };
 
 export const signinFields = {
