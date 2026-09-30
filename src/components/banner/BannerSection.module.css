@@ -33,7 +33,12 @@
   /* Percentage gutters rather than a fixed max-width: the design fills roughly
      87% of the viewport, so the band should track the window, not stop at a
      container edge. */
-  padding: clamp(48px, 6vw, 90px) clamp(20px, 6.75%, 130px);
+  --gutter: clamp(20px, 6.75%, 130px);
+  /* The artwork exports are cutouts with transparent margin baked in, which
+     leaves the outer edge looking short of the gutter. Bleeding the cutout out
+     by a slice closes that gap without enlarging the art. */
+  --bleed: clamp(10px, 2.4vw, 38px);
+  padding: clamp(48px, 6vw, 90px) var(--gutter);
   display: flex;
   flex-direction: column;
   gap: clamp(36px, 4vw, 64px);
@@ -157,7 +162,16 @@
   display: block;
   width: 100%;
   height: auto;
+  /* Pull the cutout out to the outer edge so its transparent margin no longer
+     reads as a gap. Negative margin on a flex item bleeds it past the
+     container; the bleed stays inside the gutter, so nothing is clipped. */
+  margin-right: calc(-1 * var(--bleed));
   filter: drop-shadow(0 20px 44px rgba(16, 24, 40, 0.18));
+}
+
+.reverse .artwork {
+  margin-right: 0;
+  margin-left: calc(-1 * var(--bleed));
 }
 
 /* ---------- Responsive ---------- */
@@ -188,7 +202,7 @@
     max-width: 100%;
   }
 
-  /* Artwork centred once the rows stack. */
+  /* Artwork centred once the rows stack, so no outer edge to bleed into. */
   .artwork,
   .reverse .artwork {
     max-width: min(400px, 88%);
