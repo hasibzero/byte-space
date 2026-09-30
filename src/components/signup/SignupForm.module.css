@@ -1,120 +1,119 @@
+/* The blocks are distributed down the card because the card stretches to the
+   height of the artwork column. `gap` is the floor that keeps the form readable
+   once the card is only as tall as its own content, which is the case on
+   phones. */
 .form {
   display: flex;
   flex-direction: column;
-  gap: clamp(16px, 1.4vw, 22px);
-}
-
-.row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(16px, 1.4vw, 22px);
-}
-
-.field {
-  position: relative;
-  display: flex;
-}
-
-.input {
-  width: 100%;
-  height: clamp(56px, 4vw, 70px);
-  padding: 0 clamp(20px, 1.6vw, 28px);
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background-color: #ffffff;
-  color: #101828;
-  /* `font: inherit` so the fields use Poppins instead of the browser default
-     inside form controls. */
-  font: inherit;
-  font-size: clamp(14px, 1.05vw, 17px);
-  color-scheme: light;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  appearance: none;
-}
-
-.input::placeholder {
-  color: #667085;
-}
-
-.input:focus-visible {
-  outline: none;
-  border-color: var(--hero-accent);
-  box-shadow: 0 0 0 3px rgba(203, 249, 38, 0.45);
-}
-
-/* The native select arrow would sit on top of the custom chevron. */
-select.input {
-  cursor: pointer;
-  padding-right: clamp(44px, 3.4vw, 60px);
-}
-
-.chevron {
-  position: absolute;
-  right: clamp(18px, 1.5vw, 26px);
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  transform: translateY(-50%);
-  color: #667085;
-  pointer-events: none;
-}
-
-.consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-top: clamp(4px, 0.4vw, 8px);
-  cursor: pointer;
-}
-
-.checkbox {
-  flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
-  margin: 2px 0 0;
-  accent-color: var(--hero-accent);
-  cursor: pointer;
-}
-
-.consentText {
-  font-size: clamp(12.5px, 0.95vw, 15px);
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.consentText a {
-  font-weight: 600;
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.consentText a:hover {
-  text-decoration: underline;
+  justify-content: space-between;
+  gap: clamp(16px, 2.2vw, 30px);
+  flex: 1 1 auto;
 }
 
 .submit {
-  height: clamp(56px, 4vw, 70px);
-  margin-top: clamp(6px, 0.6vw, 12px);
+  align-self: flex-end;
+  height: clamp(48px, 3.4vw, 60px);
+  padding: 0 clamp(26px, 2.4vw, 42px);
   border: 0;
-  border-radius: 8px;
+  border-radius: 999px;
   background-color: var(--hero-accent);
   color: #10240a;
-  font-size: clamp(15px, 1.15vw, 18px);
+  font-size: clamp(15px, 1.25vw, 20px);
   font-weight: 600;
   cursor: pointer;
   transition: filter 0.2s ease, transform 0.15s ease;
 }
 
-.submit:hover {
+.submit:hover:not(:disabled) {
   filter: brightness(0.93);
 }
 
-.submit:active {
+.submit:active:not(:disabled) {
   transform: scale(0.99);
 }
 
-@media (max-width: 620px) {
-  .row {
-    grid-template-columns: minmax(0, 1fr);
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.terms {
+  margin-top: -8px;
+}
+
+.termsLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: clamp(12px, 0.95vw, 14px);
+  line-height: 1.5;
+  color: #667085;
+  cursor: pointer;
+}
+
+.termsLabel input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--hero-accent);
+  border: 1px solid #e4e7ec;
+  border-radius: 4px;
+}
+
+.termsLink {
+  color: var(--hero-bg);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.termsLink:hover {
+  text-decoration: underline;
+}
+
+.terms .error {
+  margin-left: 28px;
+  font-size: clamp(12px, 0.9vw, 14px);
+  color: #f04438;
+}
+
+.prompt {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(13px, 1.05vw, 17px);
+  color: #667085;
+}
+
+.signinLink {
+  color: var(--hero-bg);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.signinLink:hover {
+  text-decoration: underline;
+}
+
+/* Phones: normal top-to-bottom flow with even spacing and a full-width primary
+   action, instead of distributing blocks down a stretched card. */
+@media (max-width: 720px) {
+  .form {
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  .submit {
+    align-self: stretch;
+    width: 100%;
+    height: 52px;
+    font-size: 16px;
+  }
+
+  .termsLabel {
+    font-size: 13px;
+  }
+
+  .prompt {
+    font-size: 14px;
   }
 }

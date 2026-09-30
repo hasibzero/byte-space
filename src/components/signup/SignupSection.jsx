@@ -1,49 +1,48 @@
 import Image from "next/image";
-import Link from "next/link";
+import AccountShell from "@/components/account/AccountShell";
+import { accountArtwork } from "@/components/account/accountData";
 import SignupForm from "./SignupForm";
-import { signupArtwork, signupCopy, signupLogo } from "./signupData";
+import { signupCopy } from "./signupData";
 import styles from "./SignupSection.module.css";
 
 /**
  * Create-account screen.
  *
- * The page reuses the hero's blue grid surface so the route feels like the same
- * product, and lays the supplied artwork export out beside the form.
+ * The page reuses the shared account shell, so it keeps the hero's blue grid
+ * surface, and mirrors the sign-in route: copy and artwork share the left
+ * column while the form sits in a white card on the right.
  */
 export default function SignupSection() {
   return (
-    <main className={styles.section}>
-      <Link href="/" aria-label="ByteSpace home" className={styles.mark}>
-        <Image
-          src={signupLogo.src}
-          alt={signupLogo.alt}
-          width={signupLogo.width}
-          height={signupLogo.height}
-          priority
-        />
-      </Link>
+    <AccountShell>
+      <div className={styles.grid}>
+        <div className={styles.promo}>
+          <div className={styles.copy}>
+            <h1 className={styles.title}>{signupCopy.title}</h1>
+            <p className={styles.body}>{signupCopy.body}</p>
+          </div>
 
-      <div className={styles.inner}>
-        <div className={styles.copy}>
-          <h1 className={styles.title}>{signupCopy.title}</h1>
-          <p className={styles.body}>{signupCopy.body}</p>
+          <div className={styles.media}>
+            <Image
+              className={styles.artwork}
+              src={accountArtwork.src}
+              alt={accountArtwork.alt}
+              width={accountArtwork.width}
+              height={accountArtwork.height}
+              priority
+            />
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <p className={styles.eyebrow}>{signupCopy.eyebrow}</p>
+          <h2 className={styles.heading}>{signupCopy.heading}</h2>
 
           <div className={styles.formWrap}>
             <SignupForm />
           </div>
         </div>
-
-        <div className={styles.media}>
-          <Image
-            className={styles.artwork}
-            src={signupArtwork.src}
-            alt={signupArtwork.alt}
-            width={signupArtwork.width}
-            height={signupArtwork.height}
-            priority
-          />
-        </div>
       </div>
-    </main>
+    </AccountShell>
   );
 }
