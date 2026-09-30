@@ -10,6 +10,41 @@
   flex: 1 1 auto;
 }
 
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(12px, 1vw, 16px);
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(13px, 1vw, 15px);
+  color: #667085;
+  cursor: pointer;
+}
+
+.remember input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--hero-accent);
+  border: 1px solid #e4e7ec;
+  border-radius: 4px;
+}
+
+.forgotLink {
+  font-size: clamp(13px, 1vw, 15px);
+  color: var(--hero-bg);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
 .submit {
   align-self: flex-end;
   height: clamp(48px, 3.4vw, 60px);
@@ -24,12 +59,17 @@
   transition: filter 0.2s ease, transform 0.15s ease;
 }
 
-.submit:hover {
+.submit:hover:not(:disabled) {
   filter: brightness(0.93);
 }
 
-.submit:active {
+.submit:active:not(:disabled) {
   transform: scale(0.99);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .divider {
@@ -55,8 +95,6 @@
   padding: 0;
   display: flex;
   align-items: center;
-  /* The provider buttons sit in the middle of the card, not against its
-     leading edge. */
   justify-content: center;
   gap: clamp(16px, 1.6vw, 24px);
 }
@@ -75,10 +113,15 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-.provider:hover {
+.provider:hover:not(:disabled) {
   border-color: #d0d5dd;
   box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
   transform: translateY(-2px);
+}
+
+.provider:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .providerIcon {
@@ -109,6 +152,12 @@
   .form {
     justify-content: flex-start;
     gap: 18px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .submit {
