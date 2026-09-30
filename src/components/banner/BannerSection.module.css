@@ -45,6 +45,9 @@
 
 .copy {
   max-width: 480px;
+  /* Pinned to the outer edge so any slack from the column always falls on the
+     artwork side, keeping both outer gutters identical. */
+  margin-right: auto;
 }
 
 .reverse .copy {
@@ -143,9 +146,18 @@
 .artwork {
   display: block;
   width: 100%;
-  max-width: min(520px, 100%);
   height: auto;
+  /* The exports are cutouts with transparent margin baked in, which reads as an
+     extra gap against the gradient. Scaling up anchored to the OUTER edge
+     consumes that margin without shifting the box, so the left and right
+     gutters stay exactly equal. */
+  transform: scale(1.08);
+  transform-origin: right center;
   filter: drop-shadow(0 18px 40px rgba(16, 24, 40, 0.16));
+}
+
+.reverse .artwork {
+  transform-origin: left center;
 }
 
 /* ---------- Responsive ---------- */
