@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { CartIcon } from "./icons";
 import { asset, heroActions, heroNav } from "./heroData";
 import styles from "./HeroHeader.module.css";
@@ -13,7 +14,7 @@ import styles from "./HeroHeader.module.css";
 export default function HeroHeader() {
   return (
     <header className={styles.header}>
-      <a href="/" aria-label="ByteSpace home" className={styles.brand}>
+      <Link href="/" aria-label="ByteSpace home" className={styles.brand}>
         <Image
           className={styles.logo}
           src={asset("logo")}
@@ -22,7 +23,7 @@ export default function HeroHeader() {
           height={37}
           preload
         />
-      </a>
+      </Link>
 
       <nav className={styles.nav} aria-label="Primary">
         {heroNav.map((item) => (
@@ -33,11 +34,19 @@ export default function HeroHeader() {
       </nav>
 
       <div className={styles.actions}>
-        {heroActions.map((item) => (
-          <a key={item.label} href={item.href} className={styles.actionLink}>
-            {item.label}
-          </a>
-        ))}
+        {heroActions.map((item) =>
+          // Real routes go through next/link so navigation stays client side;
+          // the "#" placeholders stay plain anchors.
+          item.href.startsWith("/") ? (
+            <Link key={item.label} href={item.href} className={styles.actionLink}>
+              {item.label}
+            </Link>
+          ) : (
+            <a key={item.label} href={item.href} className={styles.actionLink}>
+              {item.label}
+            </a>
+          ),
+        )}
         <CartIcon className={styles.cart} />
       </div>
     </header>

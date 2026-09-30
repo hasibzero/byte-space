@@ -43,7 +43,9 @@ export const heroNav = [
 
 export const heroActions = [
   { label: "Sign In", href: "#" },
-  { label: "Join Us", href: "#" },
+  // The only real route in this assignment, so the primary header action and
+  // the creator band both lead to it.
+  { label: "Join Us", href: "/signup" },
 ];
 
 export const heroCopy = {

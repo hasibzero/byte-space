@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ctaFrame, creatorCta } from "./ctaData";
 import styles from "./CreatorCta.module.css";
 
@@ -26,9 +27,9 @@ export default function CreatorCta() {
           {creatorCta.title}
         </h2>
         <p className={styles.body}>{creatorCta.body}</p>
-        <a href="#" className={styles.action}>
+        <Link href={creatorCta.actionHref} className={styles.action}>
           {creatorCta.action}
-        </a>
+        </Link>
       </div>
     </section>
   );
