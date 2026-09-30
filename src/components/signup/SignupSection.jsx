@@ -9,9 +9,8 @@ import styles from "./SignupSection.module.css";
  * Create-account screen.
  *
  * The page reuses the shared account shell, so it keeps the hero's blue grid
- * surface. The composition matches the sign-in route: copy and artwork share the
- * left column while the form sits on the right, with no white card because the
- * reference draws the fields directly on the grid.
+ * surface, and mirrors the sign-in route: copy and artwork share the left
+ * column while the form sits in a white card on the right.
  */
 export default function SignupSection() {
   return (
@@ -35,8 +34,13 @@ export default function SignupSection() {
           </div>
         </div>
 
-        <div className={styles.formWrap}>
-          <SignupForm />
+        <div className={styles.card}>
+          <p className={styles.eyebrow}>{signupCopy.eyebrow}</p>
+          <h2 className={styles.heading}>{signupCopy.heading}</h2>
+
+          <div className={styles.formWrap}>
+            <SignupForm />
+          </div>
         </div>
       </div>
     </AccountShell>

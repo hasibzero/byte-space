@@ -1,0 +1,45 @@
+.label {
+  display: block;
+  margin-bottom: clamp(8px, 0.7vw, 11px);
+  font-size: clamp(13px, 0.95vw, 15px);
+  font-weight: 500;
+  color: var(--hero-bg);
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  height: clamp(56px, 4.1vw, 72px);
+  padding: 0 clamp(18px, 1.5vw, 26px);
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #101828;
+  /* `font: inherit` so the control uses Poppins rather than the browser
+     default inside form elements. */
+  font: inherit;
+  font-size: clamp(14px, 1.1vw, 18px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input::placeholder {
+  color: #98a2b3;
+  /* Keeps a long placeholder inside the rounded control instead of letting it
+     run under the padding on narrow cards. */
+  text-overflow: ellipsis;
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--hero-accent);
+  box-shadow: 0 0 0 3px rgba(203, 249, 38, 0.45);
+}
+
+@media (max-width: 480px) {
+  /* iOS Safari zooms the viewport when a focused control is under 16px, which
+     leaves the page stuck at a magnified scale. */
+  .input {
+    font-size: 16px;
+    height: 54px;
+  }
+}

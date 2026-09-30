@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import AccountField from "@/components/account/AccountField";
 import { signinCopy, signinFields, signinSubmit, socialProviders } from "./signinData";
 import styles from "./SigninForm.module.css";
 
@@ -61,20 +62,7 @@ export default function SigninForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {Object.values(signinFields).map((field) => (
-        <div key={field.name} className={styles.group}>
-          <label className={styles.label} htmlFor={field.name}>
-            {field.label}
-          </label>
-          <input
-            id={field.name}
-            className={styles.input}
-            type={field.type}
-            name={field.name}
-            autoComplete={field.autoComplete}
-            placeholder={field.placeholder}
-            required
-          />
-        </div>
+        <AccountField key={field.name} field={field} />
       ))}
 
       <button className={styles.submit} type="submit">
