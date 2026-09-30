@@ -12,10 +12,13 @@
 
 .promo {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .copy {
-  max-width: min(560px, 100%);
+  max-width: min(620px, 100%);
 }
 
 .title {
@@ -27,11 +30,11 @@
 }
 
 .body {
-  margin-top: clamp(12px, 1.4vw, 22px);
-  font-size: clamp(13.5px, 1.1vw, 18px);
+  margin-top: clamp(14px, 1.5vw, 24px);
+  font-size: clamp(13.5px, 1.15vw, 18px);
   line-height: 1.62;
   color: var(--hero-on-bg-muted);
-  max-width: 52ch;
+  max-width: 46ch;
 }
 
 .media {
@@ -58,12 +61,12 @@
   flex-direction: column;
   background-color: #ffffff;
   border-radius: clamp(16px, 1.8vw, 28px);
-  padding: clamp(26px, 3.2vw, 56px);
+  padding: clamp(26px, 3.4vw, 60px);
   color: #101828;
 }
 
 .eyebrow {
-  font-size: clamp(14px, 1.05vw, 17px);
+  font-size: clamp(15px, 1.2vw, 19px);
   font-weight: 500;
   color: var(--hero-bg);
 }
