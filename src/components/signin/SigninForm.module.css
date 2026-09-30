@@ -1,49 +1,55 @@
+/* The card stretches to the height of the artwork column on desktop, so the
+   blocks are distributed down the card the way the reference lays them out.
+   `gap` is the floor that keeps the form readable once the card is only as
+   tall as its own content, which is the case on phones. */
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(16px, 2.4vw, 32px);
+  flex: 1 1 auto;
 }
 
-.group + .group {
-  margin-top: clamp(18px, 1.7vw, 26px);
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 40px);
+  flex-wrap: wrap;
 }
 
-.label {
-  display: block;
-  margin-bottom: clamp(8px, 0.7vw, 11px);
-  font-size: clamp(13px, 0.95vw, 15px);
-  font-weight: 500;
-  color: var(--hero-bg);
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(13px, 1vw, 15px);
+  color: #667085;
+  cursor: pointer;
 }
 
-.input {
-  width: 100%;
-  min-width: 0;
-  height: clamp(56px, 4.1vw, 72px);
-  padding: 0 clamp(18px, 1.5vw, 26px);
+.remember input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--hero-accent);
   border: 1px solid #e4e7ec;
-  border-radius: 8px;
-  background-color: #ffffff;
-  color: #101828;
-  /* `font: inherit` so the control uses Poppins rather than the browser default. */
-  font: inherit;
-  font-size: clamp(14px, 1.1vw, 18px);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 4px;
 }
 
-.input::placeholder {
-  color: #98a2b3;
+.forgotLink {
+  font-size: clamp(13px, 1vw, 15px);
+  color: var(--hero-bg);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.input:focus-visible {
-  outline: none;
-  border-color: var(--hero-accent);
-  box-shadow: 0 0 0 3px rgba(203, 249, 38, 0.45);
+.forgotLink:hover {
+  text-decoration: underline;
 }
 
 .submit {
   align-self: flex-end;
   height: clamp(48px, 3.4vw, 60px);
-  margin-top: clamp(24px, 2.2vw, 34px);
   padding: 0 clamp(26px, 2.4vw, 40px);
   border: 0;
   border-radius: 999px;
@@ -55,19 +61,23 @@
   transition: filter 0.2s ease, transform 0.15s ease;
 }
 
-.submit:hover {
+.submit:hover:not(:disabled) {
   filter: brightness(0.93);
 }
 
-.submit:active {
+.submit:active:not(:disabled) {
   transform: scale(0.99);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .divider {
   display: flex;
   align-items: center;
   gap: clamp(12px, 1.2vw, 20px);
-  margin-top: clamp(40px, 3.6vw, 58px);
 }
 
 .rule {
@@ -83,10 +93,11 @@
 
 .providers {
   list-style: none;
-  margin: clamp(22px, 2.2vw, 32px) 0 0;
+  margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(16px, 1.6vw, 24px);
 }
 
@@ -104,10 +115,15 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-.provider:hover {
+.provider:hover:not(:disabled) {
   border-color: #d0d5dd;
   box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
   transform: translateY(-2px);
+}
+
+.provider:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .providerIcon {
@@ -116,7 +132,7 @@
 }
 
 .prompt {
-  margin: clamp(34px, 3.2vw, 52px) 0 0;
+  margin: 0;
   text-align: center;
   font-size: clamp(13px, 1.05vw, 17px);
   color: #667085;
@@ -132,21 +148,38 @@
   text-decoration: underline;
 }
 
-@media (max-width: 620px) {
+/* Phones: normal top-to-bottom flow with even spacing, full-width primary
+   action and touch-sized provider buttons. */
+@media (max-width: 720px) {
+  .form {
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
   .submit {
     align-self: stretch;
-  }
-}
-
-@media (max-width: 480px) {
-  /* iOS Safari zooms the viewport when a focused control is under 16px, which
-     leaves the page stuck at a magnified scale. */
-  .input,
-  .submit {
+    width: 100%;
+    height: 52px;
     font-size: 16px;
   }
 
-  .input {
-    height: 54px;
+  .provider {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+
+  .providers {
+    gap: 16px;
+  }
+
+  .prompt {
+    font-size: 14px;
   }
 }

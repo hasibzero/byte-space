@@ -46,15 +46,21 @@
   padding: clamp(76px, 8vw, 140px) var(--gutter) clamp(40px, 5vw, 88px);
 }
 
-@media (max-width: 620px) {
+@media (max-width: 720px) {
   .section {
-    --gutter: clamp(16px, 5vw, 32px);
+    --gutter: clamp(16px, 5.5vw, 24px);
   }
-}
 
-@media (max-width: 380px) {
   .inner {
-    padding-top: 68px;
+    /* Only the form card renders at this width, so the shell only needs to
+       clear the corner mark. */
+    padding-top: 76px;
+    padding-bottom: 32px;
+  }
+
+  .mark {
+    top: 20px;
+    left: 20px;
   }
 
   .mark img {

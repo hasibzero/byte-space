@@ -1,108 +1,137 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { countries, signupConsent, signupCopy, signupFields, signupSubmit } from "./signupData";
+import AccountField from "@/components/account/AccountField";
+import { signupCopy, signupFields, signupSubmit } from "./signupData";
 import styles from "./SignupForm.module.css";
 
-/**
- * Create-account form.
- *
- * There is no authentication backend in this front-end assignment, so the
- * submit handler keeps the user on the page and reports the state inline
- * instead of navigating away.
- */
-export default function SignupForm() {
-  const [consent, setConsent] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+function EyeIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
 
-  function handleSubmit(event) {
+function EyeOffIcon({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+      <line x1="1" y1="1" x2="23" y2="23" />
+    </svg>
+  );
+}
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export default function SignupForm() {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+
+  function validateForm(formData) {
+    const newErrors = {};
+    if (!formData.name) {
+      newErrors.name = "Full name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Enter a valid email address";
+    }
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
+    }
+    if (!agreedToTerms) {
+      newErrors.terms = "You must agree to the Terms and Privacy Policy";
+    }
+    return newErrors;
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    const newErrors = validateForm(data);
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    setLoading(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    setLoading(false);
     setSubmitted(true);
+  }
+
+  function handleChange(name, value) {
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: null }));
+    }
+  }
+
+  function handleTermsChange(checked) {
+    setAgreedToTerms(checked);
+    if (checked && errors.terms) {
+      setErrors((prev) => ({ ...prev, terms: null }));
+    }
   }
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.row}>
-        <div className={styles.field}>
+      {signupFields.map((field) => (
+        <AccountField
+          key={field.name}
+          field={field}
+          error={errors[field.name]}
+          onChange={(value) => handleChange(field.name, value)}
+          showToggle={field.name === "password"}
+          showPassword={showPassword}
+          onToggleShowPassword={() => setShowPassword((prev) => !prev)}
+        />
+      ))}
+
+      <div className={styles.terms}>
+        <label className={styles.termsLabel}>
           <input
-            className={styles.input}
-            type={signupFields.fullName.type}
-            name={signupFields.fullName.name}
-            autoComplete={signupFields.fullName.autoComplete}
-            placeholder={signupFields.fullName.placeholder}
-            aria-label={signupFields.fullName.label}
+            type="checkbox"
+            name="terms"
+            checked={agreedToTerms}
+            onChange={(e) => handleTermsChange(e.target.checked)}
             required
           />
-        </div>
-
-        <div className={styles.field}>
-          <input
-            className={styles.input}
-            type={signupFields.email.type}
-            name={signupFields.email.name}
-            autoComplete={signupFields.email.autoComplete}
-            placeholder={signupFields.email.placeholder}
-            aria-label={signupFields.email.label}
-            required
-          />
-        </div>
+          <span>
+            I agree to the{" "}
+            <a href="/terms" className={styles.termsLink}>Terms of Service</a>{" "}
+            and{" "}
+            <a href="/privacy" className={styles.termsLink}>Privacy Policy</a>
+          </span>
+        </label>
+        {errors.terms && <span className={styles.error} role="alert">{errors.terms}</span>}
       </div>
 
-      <div className={styles.field}>
-        <input
-          className={styles.input}
-          type={signupFields.password.type}
-          name={signupFields.password.name}
-          autoComplete={signupFields.password.autoComplete}
-          placeholder={signupFields.password.placeholder}
-          aria-label={signupFields.password.label}
-          required
-        />
-      </div>
-
-      <div className={styles.field}>
-        <select
-          className={styles.input}
-          name={signupFields.country.name}
-          aria-label={signupFields.country.label}
-          defaultValue=""
-          required
-        >
-          {countries.map((country, index) => (
-            <option key={country} value={index === 0 ? "" : country} disabled={index === 0}>
-              {country}
-            </option>
-          ))}
-        </select>
-
-        <svg className={styles.chevron} viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
-          <path
-            d="m5 7.5 5 5 5-5"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
-
-      <label className={styles.consent}>
-        <input
-          className={styles.checkbox}
-          type="checkbox"
-          checked={consent}
-          onChange={(event) => setConsent(event.target.checked)}
-          required
-        />
-        <span className={styles.consentText}>
-          {signupCopy.consentBefore} <a href={signupConsent.terms.href}>{signupConsent.terms.label}</a>{" "}
-          {signupCopy.consentAfter} <a href={signupConsent.privacy.href}>{signupConsent.privacy.label}</a>.
-        </span>
-      </label>
-
-      <button className={styles.submit} type="submit">
-        {submitted ? "Account created" : signupSubmit}
+      <button className={styles.submit} type="submit" disabled={loading || !agreedToTerms}>
+        {loading ? "Creating account..." : submitted ? "Account created" : signupSubmit}
       </button>
+
+      <p className={styles.prompt}>
+        {signupCopy.prompt}{" "}
+        <Link href={signupCopy.signinHref} className={styles.signinLink}>
+          {signupCopy.signinLabel}
+        </Link>
+      </p>
     </form>
   );
 }
