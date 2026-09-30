@@ -128,10 +128,16 @@
 
 /* ---------- Artwork ---------- */
 
+/* Artwork hugs the outer edge of the band rather than floating in the middle
+   of its column, which would leave a gap on the right of the first block. */
 .media {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+}
+
+.reverse .media {
+  justify-content: flex-start;
 }
 
 .artwork {
