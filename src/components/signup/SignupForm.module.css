@@ -1,0 +1,120 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.4vw, 22px);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 1.4vw, 22px);
+}
+
+.field {
+  position: relative;
+  display: flex;
+}
+
+.input {
+  width: 100%;
+  height: clamp(56px, 4vw, 70px);
+  padding: 0 clamp(20px, 1.6vw, 28px);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #101828;
+  /* `font: inherit` so the fields use Poppins instead of the browser default
+     inside form controls. */
+  font: inherit;
+  font-size: clamp(14px, 1.05vw, 17px);
+  color-scheme: light;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+}
+
+.input::placeholder {
+  color: #667085;
+}
+
+.input:focus-visible {
+  outline: none;
+  border-color: var(--hero-accent);
+  box-shadow: 0 0 0 3px rgba(203, 249, 38, 0.45);
+}
+
+/* The native select arrow would sit on top of the custom chevron. */
+select.input {
+  cursor: pointer;
+  padding-right: clamp(44px, 3.4vw, 60px);
+}
+
+.chevron {
+  position: absolute;
+  right: clamp(18px, 1.5vw, 26px);
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  color: #667085;
+  pointer-events: none;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: clamp(4px, 0.4vw, 8px);
+  cursor: pointer;
+}
+
+.checkbox {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--hero-accent);
+  cursor: pointer;
+}
+
+.consentText {
+  font-size: clamp(12.5px, 0.95vw, 15px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.consentText a {
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.consentText a:hover {
+  text-decoration: underline;
+}
+
+.submit {
+  height: clamp(56px, 4vw, 70px);
+  margin-top: clamp(6px, 0.6vw, 12px);
+  border: 0;
+  border-radius: 8px;
+  background-color: var(--hero-accent);
+  color: #10240a;
+  font-size: clamp(15px, 1.15vw, 18px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.submit:hover {
+  filter: brightness(0.93);
+}
+
+.submit:active {
+  transform: scale(0.99);
+}
+
+@media (max-width: 620px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
